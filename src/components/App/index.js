@@ -1,14 +1,19 @@
 // == Import
 import './styles.css';
-import logo from '/src/assets/images/logo-github.png';
 
-// == Composant
+// Installed Modules
+import { Route, Routes } from 'react-router';
+
+// == Components
 import RepoFinder from '../RepoFinder';
+import Header from '../Header';
 
 const App = () => (
   <div className="app">
-    <img src={logo} className="github_logo" />
-    <RepoFinder />
+    <Header />
+    <Routes>
+      <Route path="/" element={<RepoFinder />} />
+    </Routes>
   </div>
 );
 
