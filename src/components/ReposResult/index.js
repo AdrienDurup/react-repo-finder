@@ -1,9 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 import ResultCard from '../ResultCard';
 import './ReposResult.css';
 
-const ReposResult = ({ repos }) => {
+const ReposResult = React.memo(({ repos }) => {
 
   console.log('ReposResult rendering');
 
@@ -15,9 +16,8 @@ const ReposResult = ({ repos }) => {
         ))
       }
     </Card.Group>
-
   );
-};
+});
 
 export default ReposResult;
 

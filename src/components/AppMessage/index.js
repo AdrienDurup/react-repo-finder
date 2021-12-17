@@ -1,7 +1,6 @@
-import React from 'react';
 import { Message } from 'semantic-ui-react';
 
-const AppMessage = ({ title, content, status }) => {
+const AppMessage = ({ title, children, status }) => {
   const statusColor = {
     success: 'green',
     error: 'red',
@@ -14,7 +13,7 @@ const AppMessage = ({ title, content, status }) => {
     color={statusColor[status]}>
       {title ? <Message.Header>{title}</Message.Header> : ''}
       <p>
-      {content}
+      {children}
       </p>
     </Message>
   );

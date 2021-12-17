@@ -1,0 +1,25 @@
+.get-more-button{
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:2rem auto;
+  width: 4rem;
+  height: 4rem;
+  font-size: 4rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50%;
+  background-color: whitesmoke;
+  color: rgb(170, 170, 170);
+  box-shadow: 3px 2px 3px #00000030;
+  transition: 100ms ease-in-out;
+  &:hover{
+    background-color: rgb(232, 232, 232);
+  }
+  &:active{
+    background-color: rgb(214, 214, 214);
+    color: gray;
+  }
+}
+
