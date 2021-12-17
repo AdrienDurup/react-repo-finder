@@ -1,0 +1,14 @@
+[
+    {
+        "q": "A quoi ça sert ?",
+        "r": "Cette application permet de trouver une liste de dépôts GitHub pour un critère donné."
+    },
+    {
+        "q": "Comment faire une recherche ?",
+        "r": "Sur la page recherche, complétez le champ de recherche et valider la recherche."
+    },
+    {
+        "q": "Puis-je chercher n'importe quel terme ?",
+        "r": "Oui, c'est fou."
+    }
+]
