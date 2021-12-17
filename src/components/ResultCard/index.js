@@ -1,8 +1,8 @@
 import { Card, Icon, Image } from 'semantic-ui-react';
 import './ResultCard.css';
 
-const ResultCard = ({ name, owner,watchers,description }) => {
-console.log(owner);
+const ResultCard = ({ name, owner,watchers,description,stars }) => {
+console.log(stars,owner);
 
   return (
     <Card className="result-card">
@@ -18,7 +18,7 @@ console.log(owner);
       </Card.Content>
       <Card.Content extra>
         <a>
-          <Icon name="user" />
+          <Icon name="star" />
           {watchers}
         </a>
       </Card.Content>
