@@ -1,5 +1,6 @@
 // framework modules
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 // components
@@ -18,7 +19,6 @@ const RepoFinder = () => {
   const [queryRes, setQueryRes] = useState([]);//will be array but we need to test if null at start
   const [resCount, setResCount] = useState(0);
   const [getMore, setGetMore] = useState(0);
-  const [canLoadMore, setCanLoadMore]=useState(false);
   const [savedInput, setSavedInput] = useState('');
 
   useEffect(async () => {
@@ -33,12 +33,12 @@ const RepoFinder = () => {
         console.log(getMore,query);
         console.log("data", res);
         /* if current search is same as before we increase rended cards concatenating results */
-        // console.log(searchVal,savedInput);
-        // if (searchVal === savedInput) {
-        //   console.log("searchVal === savedInput");
-        //   res = [...queryRes, ...res];
-        //   console.log(res);
-        //};
+        console.log(searchVal,savedInput);
+        if (searchVal === savedInput) {
+          console.log("searchVal === savedInput");
+          res = [...queryRes, ...res];
+          console.log(res);
+        };
         /* we set queryRes and savedInput whatsoever */
         setQueryRes(res);
       }
@@ -79,8 +79,6 @@ const RepoFinder = () => {
     setGetMore(getMore + 1);
     /* we pass "previous search value" in search value */
     setSearchVal(savedInput);
-    /* say we replace button with new cards and new button */
-    setCanLoadMore(true);
   };
 
   // console.log("QUERY RES", queryRes, searchVal, resCount, getMore);
@@ -106,7 +104,7 @@ We use this feature later on to check which component we show */
           <>
             <ResultMessage total={total} />
             <ReposResult repos={repos} />
-            {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} canLoadMore={canLoadMore} repos={repos} />}
+            {resCount > maxPerPage && <GetMoreButton onClick={HandleSetGetMore} />}
           </>
         )
       }
