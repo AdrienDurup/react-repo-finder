@@ -1,0 +1,23 @@
+@use 'reset';
+@use 'vars';
+
+body {
+  font-family: sans-serif;
+}
+#root{
+  background-color: whitesmoke;
+  margin:0;
+  padding-top: 1rem;
+  min-height:100vh;
+}
+/* 
+  // or you can import your own font
+  @font-face {
+    font-family: 'Roboto';
+    src: url('../assets/fonts/Roboto-Regular.ttf');
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+*/

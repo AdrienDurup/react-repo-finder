@@ -1,0 +1,16 @@
+.app {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  padding: .5rem;
+}
+
+.app img {
+  max-width: 150px;
+}
+
+.github_logo{
+  margin: auto;
+  display: block;
+  }
