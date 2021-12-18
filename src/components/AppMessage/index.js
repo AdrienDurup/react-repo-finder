@@ -1,4 +1,5 @@
-import { Message } from 'semantic-ui-react';
+import { Container, Message } from 'semantic-ui-react';
+import './style.css';
 
 const AppMessage = ({ title, children, status }) => {
   const statusColor = {
@@ -8,6 +9,7 @@ const AppMessage = ({ title, children, status }) => {
   };
   console.log('message');
   return (
+    <Container className="app-message">
     <Message
     compact={false}
     color={statusColor[status]}>
@@ -16,6 +18,7 @@ const AppMessage = ({ title, children, status }) => {
       {children}
       </p>
     </Message>
+    </Container>
   );
 };
 

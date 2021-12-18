@@ -4,6 +4,7 @@
   text-align: center;
   background-color: white;
   padding: .5rem;
+  min-height: 90vh;
 }
 
 .app img {

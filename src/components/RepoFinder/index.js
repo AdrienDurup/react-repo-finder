@@ -18,7 +18,7 @@ const RepoFinder = () => {
   const [queryRes, setQueryRes] = useState([]);//will be array but we need to test if null at start
   const [resCount, setResCount] = useState(0);
   const [getMore, setGetMore] = useState(0);
-  const [canLoadMore, setCanLoadMore]=useState(false);
+  const [canLoadMore, setCanLoadMore] = useState(false);
   const [savedInput, setSavedInput] = useState('');
 
   useEffect(async () => {
@@ -26,19 +26,19 @@ const RepoFinder = () => {
       try {
         setResultLoading(true);
         /* getMore start at 0 on purpose but what we really need is an index starting at 1 */
-        const query = `https://api.github.com/search/repositories?q=${searchVal}&sort=stars&order=desc&page=${getMore+1}&per_page=${maxPerPage}`;
+        const query = `https://api.github.com/search/repositories?q=${searchVal}&sort=stars&order=desc&page=${getMore + 1}&per_page=${maxPerPage}`;
         let res = await axios.get(query);
         setResCount(res.data.total_count);
         res = res.data.items;
-        console.log(getMore,query);
+        console.log(getMore, query);
         console.log("data", res);
         /* if current search is same as before we increase rended cards concatenating results */
-        // console.log(searchVal,savedInput);
-        // if (searchVal === savedInput) {
-        //   console.log("searchVal === savedInput");
-        //   res = [...queryRes, ...res];
-        //   console.log(res);
-        //};
+        console.log(searchVal, savedInput);
+        if (searchVal === savedInput) {
+          console.log("searchVal === savedInput");
+          res = [...queryRes, ...res];
+          console.log(res);
+        };
         /* we set queryRes and savedInput whatsoever */
         setQueryRes(res);
       }
@@ -50,7 +50,7 @@ const RepoFinder = () => {
         setResultLoading(false);
       };
     };
-  }, [searchVal]);
+  }, [searchVal, getMore]);
 
   useEffect(() => {
     if (searchVal !== savedInput) {
@@ -59,7 +59,7 @@ const RepoFinder = () => {
       setSavedInput(searchVal);
     };
     /* we always clear search value */
-    setSearchVal('');
+    //setSearchVal('');
   }, [queryRes]);
 
   const inputChange = (e) => {
@@ -99,18 +99,15 @@ We use this feature later on to check which component we show */
       </form>
       {/* if search has not been triggered AND there is no query stored in state */}
       {
-        !searchVal && ln === 0 && <AppMessage status="info">'Please "git" it a try.</AppMessage>
+        !searchVal && !savedInput && <AppMessage status="info">'Please "git" it a try.</AppMessage>
       }
       {
-        !resultLoading && ln > 0 && (// if not loading and query has been done (means axios query.data.items exists) we show message
-          <>
-            <ResultMessage total={total} />
-            <ReposResult repos={repos} />
-            {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} canLoadMore={canLoadMore} repos={repos} />}
-          </>
+        !resultLoading && savedInput && (// if not loading and query has been done (means axios query.data.items exists) we show message
+          <ResultMessage total={total} />
         )
       }
-
+      <ReposResult repos={repos} />
+      {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} canLoadMore={canLoadMore} repos={repos} />}
     </>
   );
 };

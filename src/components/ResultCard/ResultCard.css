@@ -1,3 +1,16 @@
 .card_avatar{
   width: 100%;
 }
+.result-card{
+  flex-basis: 30%;
+}
+@media screen and(max-width:600px) {
+  .result-card{
+    flex-basis: 46%;
+  }
+}
+@media screen and(max-width:340px) {
+  .result-card{
+flex-basis: 100%;
+  }
+}
