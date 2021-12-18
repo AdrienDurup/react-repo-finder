@@ -18,7 +18,6 @@ const RepoFinder = () => {
   const [queryRes, setQueryRes] = useState([]);//will be array but we need to test if null at start
   const [resCount, setResCount] = useState(0);
   const [getMore, setGetMore] = useState(0);
-  const [canLoadMore, setCanLoadMore] = useState(false);
   const [savedInput, setSavedInput] = useState('');
 
   useEffect(async () => {
@@ -59,7 +58,6 @@ const RepoFinder = () => {
       setSavedInput(searchVal);
     };
     /* we always clear search value */
-    //setSearchVal('');
   }, [queryRes]);
 
   const inputChange = (e) => {
@@ -87,10 +85,7 @@ const RepoFinder = () => {
   const repos = queryRes;
   // console.log(repos instanceof Array);
 
-  /* if queryRes has not been set yet with query data, queryRes.items does not exists.
-We use this feature later on to check which component we show */
   const total = resCount;
-  const ln = repos instanceof Array ? repos.length : null;
 
   return (
     <>
@@ -107,7 +102,7 @@ We use this feature later on to check which component we show */
         )
       }
       <ReposResult repos={repos} />
-      {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} canLoadMore={canLoadMore} repos={repos} />}
+      {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} />}
     </>
   );
 };
