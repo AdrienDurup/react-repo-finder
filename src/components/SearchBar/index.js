@@ -6,6 +6,7 @@ const SearchBar = ({ onChange, isLoading, value }) => (
     placeholder="Search repo..."
     iconPosition="left"
     fluid
+    disabled={isLoading}
     onChange={onChange}
     value={value}
   />
