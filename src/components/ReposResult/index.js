@@ -14,7 +14,7 @@ const ReposResult = React.memo(({ repos }) => {
       <Card.Group className="result-list">
         {
           repos.map((el) => (
-            <ResultCard {...el} key={el.id} />
+            <ResultCard {...el} key={el.id} fluid />
           ))
         }
       </Card.Group>

@@ -8,6 +8,7 @@ import ReposResult from '../ReposResult';
 import SearchBar from '../SearchBar';
 import AppMessage from '../AppMessage';
 import ResultMessage from '../ResultMessage';
+import PrevNextButton from '../PrevNextButton';
 
 const maxPerPage = 9;
 
@@ -18,6 +19,7 @@ const RepoFinder = () => {
   const [queryRes, setQueryRes] = useState([]);//will be array but we need to test if null at start
   const [resCount, setResCount] = useState(0);
   const [getMore, setGetMore] = useState(0);
+  const [isTriggeredByPrevNext, setIsTriggeredByPrevNext] = useState(false);
   const [savedInput, setSavedInput] = useState('');
 
   useEffect(async () => {
@@ -33,13 +35,14 @@ const RepoFinder = () => {
         console.log("data", res);
         /* if current search is same as before we increase rended cards concatenating results */
         console.log(searchVal, savedInput);
-        if (searchVal === savedInput) {
+        if (searchVal === savedInput && !isTriggeredByPrevNext) {
           console.log("searchVal === savedInput");
           res = [...queryRes, ...res];
           console.log(res);
         };
-        /* we set queryRes and savedInput whatsoever */
+        /* we set queryRes whatsoever, and reset isTriggeredByPrevNext if true  */
         setQueryRes(res);
+        if (isTriggeredByPrevNext) setIsTriggeredByPrevNext(false);
       }
       catch (e) {
         console.error(e);
@@ -77,8 +80,13 @@ const RepoFinder = () => {
     setGetMore(getMore + 1);
     /* we pass "previous search value" in search value */
     setSearchVal(savedInput);
-    /* say we replace button with new cards and new button */
-    setCanLoadMore(true);
+  };
+
+  const getPage = (modifier) => {
+    console.log("getPage");
+    setIsTriggeredByPrevNext(true);
+    setGetMore(getMore + modifier);
+    setSearchVal(savedInput);
   };
 
   // console.log("QUERY RES", queryRes, searchVal, resCount, getMore);
@@ -102,6 +110,7 @@ const RepoFinder = () => {
         )
       }
       <ReposResult repos={repos} />
+      {resCount > maxPerPage && <PrevNextButton getPage={getPage} disabled={resultLoading} />}
       {resCount > maxPerPage && <GetMoreButton getMore={HandleSetGetMore} />}
     </>
   );

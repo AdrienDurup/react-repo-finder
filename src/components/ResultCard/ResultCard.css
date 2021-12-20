@@ -1,8 +1,11 @@
 .card_avatar{
-  width: 100%;
+  width:100%;
+
 }
 .result-card{
-  flex-basis: 30%;
+word-wrap: break-word;
+flex: 1;
+min-width: 150px;
 }
 @media screen and(max-width:600px) {
   .result-card{

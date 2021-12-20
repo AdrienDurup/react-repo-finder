@@ -1,7 +1,7 @@
 .result-list{
   position: relative;
 display: flex;
-flex-wrap: nowrap;
+flex-wrap: wrap;
 align-items: stretch;
-justify-content: space-between;
+/* justify-content: space-between; */
 }
