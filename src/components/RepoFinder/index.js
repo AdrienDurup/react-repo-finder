@@ -90,7 +90,7 @@ const RepoFinder = () => {
   return (
     <>
       <form onSubmit={searchSubmit}>
-        <SearchBar onChange={inputChange} isLoading={resultLoading} />
+        <SearchBar onChange={inputChange} isLoading={resultLoading} value={inputVal} />
       </form>
       {/* if search has not been triggered AND there is no query stored in state */}
       {
