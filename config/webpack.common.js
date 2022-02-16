@@ -15,11 +15,11 @@ module.exports = {
     // JS
     paths.src + '/index.js',
   ],
-  output: {
-    path: paths.build,
-    publicPath: '/',
-    filename: 'js/[name].[contenthash].js',
-  },
+  // output: {
+  //   path: paths.build,
+  //   publicPath: './',
+  //   filename: 'js/[name].[contenthash].js',
+  // },
   resolve: {
     alias: {
       src: paths.src,
